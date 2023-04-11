@@ -18,6 +18,14 @@ public class Field implements Cloneable {
         }
     }
 
+    public List<Cell> getEmptyCells() {
+        List<Cell> ret = new ArrayList<>();
+        for (int x = 0; x < 3; x++)
+            for(int y = 0; y< 3; y++)
+                if(cells[x][y].value == Cell.val.DEFAULT) ret.add(cells[x][y]);
+        return ret;
+    }
+
     enum win {
         X, O, DRAW, NOT_FINISHED
     }
@@ -39,17 +47,18 @@ public class Field implements Cloneable {
                 };
     }
 
-    public void put(String coords, Cell.val value) {
+    public Field put(String coords, Cell.val value) {
         if(!coords.trim().matches("\\d\\s\\d")) throw new IllegalArgumentException("You should enter numbers!");
         int x = Integer.parseInt(coords, 0, 1, 10);
         int y = Integer.parseInt(coords, 2, 3, 10);
-        put(x, y, value);
+        return put(x, y, value);
     }
 
-    public void put(int x, int y, Cell.val value) {
+    public Field put(int x, int y, Cell.val value) {
         if (x > 3 || y > 3) throw new IllegalArgumentException("Coordinates should be from 1 to 3!");
         if (cells[x-1][y-1].value != Cell.val.DEFAULT) throw new IllegalArgumentException("This cell is occupied! Choose another one!");
         cells[x-1][y-1].value = value;
+        return this;
     }
 
     public Cell.val getPlayer() {
