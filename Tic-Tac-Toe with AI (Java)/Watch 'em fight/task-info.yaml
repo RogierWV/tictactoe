@@ -247,6 +247,49 @@ files:
         }
     }
   learner_created: false
+- name: src/tictactoe/EasyAI.java
+  visible: true
+  text: |
+    package tictactoe;
+
+    import java.util.Random;
+
+    public class EasyAI implements AI {
+        Random r;
+
+        public EasyAI() {
+            r = new Random();
+        }
+
+        public void move(Field field) {
+            while(!tryPut(field, r.nextInt(3), r.nextInt(3), 'O'));
+        }
+    }
+  learner_created: true
+- name: src/tictactoe/Player.java
+  visible: true
+  text: |
+    package tictactoe;
+
+    public interface AI {
+        void move(Field field);
+        default boolean tryPut(Field field, int x, int y, char c) {
+            try {
+    //            System.out.printf("x: %d, y: %d", x, y);
+                field.put(x,y,c);
+                return true;
+            } catch(Exception e) {
+                return false;
+            }
+        }
+    }
+  learner_created: true
+- name: src/tictactoe/User.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7436#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Fri, 07 Apr 2023 08:07:32 UTC"
+record: 3

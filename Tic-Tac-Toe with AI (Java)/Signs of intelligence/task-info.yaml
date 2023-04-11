@@ -330,6 +330,78 @@ files:
         }
     }
   learner_created: false
+- name: src/tictactoe/EasyAI.java
+  visible: true
+  text: |
+    package tictactoe;
+
+    import java.util.Random;
+
+    public class EasyAI implements Player {
+        Random r;
+        char value;
+
+        public EasyAI(char value) {
+            this.r = new Random();
+            this.value = value;
+        }
+
+        public void move(Field field) {
+            System.out.println("Making move level \"easy\"");
+            while(!tryPut(field, r.nextInt(3)+1, r.nextInt(3)+1, value));
+        }
+    }
+  learner_created: true
+- name: src/tictactoe/Player.java
+  visible: true
+  text: |
+    package tictactoe;
+
+    public interface Player {
+        void move(Field field);
+        default boolean tryPut(Field field, int x, int y, char c) {
+            try {
+                field.put(x,y,c);
+                return true;
+            } catch(Exception e) {
+                return false;
+            }
+        }
+    }
+  learner_created: true
+- name: src/tictactoe/User.java
+  visible: true
+  text: |
+    package tictactoe;
+
+    import java.util.Scanner;
+
+    public class User implements Player {
+        Scanner scanner;
+        char value;
+        public User(char value, Scanner scanner) {
+            this.value = value;
+            this.scanner = scanner;
+        }
+
+        @Override
+        public void move(Field field) {
+            try {
+                System.out.print("Enter the coordinates: ");
+                field.put(scanner.nextLine().trim(), value);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                move(field);
+            }
+        }
+    }
+  learner_created: true
+- name: src/tictactoe/MediumAI.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7437#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Fri, 07 Apr 2023 11:09:52 UTC"
+record: 4
