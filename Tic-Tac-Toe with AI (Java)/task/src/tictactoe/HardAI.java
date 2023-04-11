@@ -43,7 +43,12 @@ public class HardAI extends AI {
                 //TODO: figure out why it touches non empty cells
                 return f.getEmptyCells().stream()
                         .map(c -> new MinimaxTask(f.clone().put(c.x, c.y, v), Cell.getOpposite(v)).fork())
-                        .map(ForkJoinTask::join).map(MoveSet::invertScore).max(Comparator.comparingInt(MoveSet::score)).get(); // opponent's move
+                        .map(ForkJoinTask::join)
+                        // opponent's move so invert the value
+                        .map(MoveSet::invertScore)
+                        .peek(System.out::println) //debug
+                        .max(Comparator.comparingInt(MoveSet::score))
+                        .get();
             }
             return new MoveSet(0, null);
         }
