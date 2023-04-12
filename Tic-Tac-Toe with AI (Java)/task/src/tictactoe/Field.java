@@ -8,14 +8,19 @@ public class Field implements Cloneable {
 
     @Override
     public Field clone() {
-        try {
-            Field clone = (Field) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
-            clone.cells = cells.clone();
-            return clone;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
+//            Field clone = (Field) super.clone();
+//            clone.cells = cells.clone();
+//            for (int x = 0; x < 3; x++) {
+//                for (int y = 0; y < 3; y++) {
+//                    clone.cells[x][y] = cells[x][y].clone();
+//                }
+//            }
+//            return clone;
+        Field clone = new Field();
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                clone.cells[i][j] = new Cell(cells[i][j].x, cells[i][j].y, cells[i][j].value);
+        return clone;
     }
 
     public List<Cell> getEmptyCells() {

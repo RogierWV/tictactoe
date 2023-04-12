@@ -49,7 +49,7 @@ public class MediumAI extends AI {
             }
         }
         if(_s == 1 && (xs == 2 || os == 2)) {
-//            System.out.printf("Targeting Y = %d %n", y+1);
+//            System.out.printf("Targeting diagonal ltr %n", y+1);
             int x = 0, y = 0;
             while(shouldPut(field, 1+x++, 1+y++, value));
             return;
@@ -63,7 +63,7 @@ public class MediumAI extends AI {
             }
         }
         if(_s == 1 && (xs == 2 || os == 2)) {
-//            System.out.printf("Targeting Y = %d %n", y+1);
+//            System.out.printf("Targeting diagonal rtl %n", y+1);
             int x = 0, y = 0;
             while(shouldPut(field, 1+x++, -1+y++, value));
             return;

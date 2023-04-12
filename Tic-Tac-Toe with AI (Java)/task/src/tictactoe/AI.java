@@ -19,7 +19,7 @@ public abstract class AI implements Player {
             field.put(x,y,c);
             return false;
         } catch(Exception e) {
-            return true;
+            return x <= 3 && y <= 3;
         }
     }
 }

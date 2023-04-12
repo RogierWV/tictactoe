@@ -9,7 +9,9 @@ public record MoveSet(int score, Cell cell) {
     public String toString() {
         return "MoveSet{" +
                 "score=" + score +
-                ", cell=" + cell +
-                '}';
+                ", cell={" + cell.x +
+                ", " + cell.y +
+                ", " + cell.value +
+                "}}";
     }
 }

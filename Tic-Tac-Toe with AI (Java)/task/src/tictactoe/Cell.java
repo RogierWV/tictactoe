@@ -4,6 +4,16 @@ public class Cell {
     int x;
     int y;
     val value;
+
+//    @Override
+//    public Cell clone() {
+//        try {
+//            return (Cell) super.clone();
+//        } catch (CloneNotSupportedException e) {
+//            throw new AssertionError();
+//        }
+//    }
+
     public enum val {
         X, O, DEFAULT
     }
