@@ -64,8 +64,10 @@ public class MediumAI extends AI {
         }
         if(_s == 1 && (xs == 2 || os == 2)) {
 //            System.out.printf("Targeting diagonal rtl %n", y+1);
-            int x = 0, y = 0;
-            while(shouldPut(field, 1+x++, -1+y++, value));
+            int x = 2, y = 0;
+//            int[][] xy = new int[3][2]{{3,1}, {2,2}, {1,3}};
+            while(shouldPut(field, 1+x--, 1+y++, value)); //TODO fix potential infinite loop here
+
             return;
         }
         while(shouldPut(field, r.nextInt(3)+1, r.nextInt(3)+1, value));
