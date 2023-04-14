@@ -1,8 +1,6 @@
 package tictactoe;
 
 import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
@@ -19,6 +17,7 @@ public class HardAI extends AI {
     public void move(Field field) {
         System.out.println("Making move level \"hard\"");
         MoveSet optimalMove = pool.invoke(new MinimaxTask(field.clone(), value, null, true));
+        System.out.println(optimalMove);
         if (null == optimalMove.cell()) throw new RuntimeException("Can't make an optimal move!");
 //        System.out.println(field);
         field.put(optimalMove.cell().x, optimalMove.cell().y, value);
@@ -48,7 +47,9 @@ public class HardAI extends AI {
                 //for each possible move call minimax with new state and get best result
                 return f.getEmptyCells().stream()
 //                        .peek(c -> System.out.printf("{%d,%d,%s}", c.x, c.y, c.value))
-                        .map(c -> new MinimaxTask(f.clone().put(c.x, c.y, v), Cell.getOpposite(v), new Cell(c.x, c.y, v), !max).fork())
+                        .map(c -> new MinimaxTask(f.clone().put(c.x, c.y, v),
+                                Cell.getOpposite(v), new Cell(c.x, c.y, v),
+                                !max).fork())
                         .map(ForkJoinTask::join)
                         // invert or no-op
                         .map((max)

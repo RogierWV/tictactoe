@@ -532,5 +532,39 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7438#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #182
+
+    Your minimax algorithm is wrong! It chooses wrong positions to make a move!
+
+    Please find below the output of your program during this failed test.
+    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
+
+    ---
+
+    Input command: &gt; start user hard
+    ---------
+    |       |
+    |       |
+    |       |
+    ---------
+
+    Enter the coordinates: &gt; 1 1
+    ---------
+    | X     |
+    |       |
+    |       |
+    ---------
+
+    Making move level &quot;hard&quot;
+    ---------
+    | X     |
+    |     O |
+    |       |
+    ---------
+
+    Enter the coordinates:
+  time: "Fri, 14 Apr 2023 07:30:08 UTC"
 record: -1
